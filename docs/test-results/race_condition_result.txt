@@ -1,0 +1,28 @@
+-> logging in as 'demo' on http://localhost:8080
+-> product RACE-001 id=3 starting_stock=31
+
+=== Phase 1: UNSAFE checkout (proving the race exists) ===
+  mode                              UNSAFE (no lock)
+  requests_fired                    100
+  successful_sales (HTTP 201)       100
+  out_of_stock_rejected (HTTP 409)  0
+  other_errors                      0
+  stock_before                      50
+  stock_after                       43
+  consistent                        False
+
+=== Phase 2: SAFE checkout (with row lock) ===
+  mode                              SAFE (SELECT FOR UPDATE)
+  requests_fired                    100
+  successful_sales (HTTP 201)       50
+  out_of_stock_rejected (HTTP 409)  50
+  other_errors                      0
+  stock_before                      50
+  stock_after                       0
+  consistent                        True
+
+Interpretation:
+  * Phase 1 should show successes != 50 OR stock_after != 0
+    (oversell or inconsistent state -> classic race condition).
+  * Phase 2 should show exactly 50 successes, 50 conflicts,
+    stock_after = 0, consistent = True.

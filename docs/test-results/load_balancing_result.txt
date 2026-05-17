@@ -1,0 +1,10 @@
+{"status":"ok","instance":"web2","db":true}
+{"status":"ok","instance":"web1","db":true}
+{"status":"ok","instance":"web3","db":true}
+{"status":"ok","instance":"web2","db":true}
+{"status":"ok","instance":"web1","db":true}
+{"status":"ok","instance":"web3","db":true}
+{"status":"ok","instance":"web2","db":true}
+{"status":"ok","instance":"web1","db":true}
+{"status":"ok","instance":"web3","db":true}
+{"status":"ok","instance":"web2","db":true}

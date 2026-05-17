@@ -1,0 +1,150 @@
+hpe_celery_worker  | [2026-05-17 22:30:47,266: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_order_notifications[7208510f-7640-4413-be1a-5426d8f9b87e] succeeded in 0.1578763750003418s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,268: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[caafc0c4-5ee0-4045-b096-5c08a51e549f] received
+hpe_celery_worker  | [2026-05-17 22:30:47,371] INFO apps.orders.tasks inst=celery :: invoice generated for order=360 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:47,371] INFO apps.core inst=celery :: timed[task.send_invoice_email] 286.97ms
+hpe_celery_worker  | [2026-05-17 22:30:47,371: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_invoice_email[e2730f88-6326-4045-8e0b-e0ccd90c4852] succeeded in 0.2875985419996141s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,373: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[6944b647-233a-4bcb-a48b-071cc95255db] received
+hpe_celery_worker  | [2026-05-17 22:30:47,396] INFO apps.orders.tasks inst=celery :: invoice generated for order=359 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:47,396] INFO apps.core inst=celery :: timed[task.send_invoice_email] 479.83ms
+hpe_celery_worker  | [2026-05-17 22:30:47,397: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_invoice_email[27684ec5-d850-4a99-8e28-fc12a318aebc] succeeded in 0.48098091699921497s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,399: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[f90ac2f5-5b27-4bc1-a06d-bde1906a0aa0] received
+hpe_celery_worker  | [2026-05-17 22:30:47,428] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=361
+hpe_celery_worker  | [2026-05-17 22:30:47,428] INFO apps.core inst=celery :: timed[task.send_order_notifications] 159.82ms
+hpe_celery_worker  | [2026-05-17 22:30:47,429: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_order_notifications[caafc0c4-5ee0-4045-b096-5c08a51e549f] succeeded in 0.16093466700021963s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,431: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[cfa8f726-b843-4426-ab06-292ecb6d4fa5] received
+hpe_celery_worker  | [2026-05-17 22:30:47,497] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=362
+hpe_celery_worker  | [2026-05-17 22:30:47,497] INFO apps.core inst=celery :: timed[task.send_order_notifications] 97.69ms
+hpe_celery_worker  | [2026-05-17 22:30:47,498: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[f90ac2f5-5b27-4bc1-a06d-bde1906a0aa0] succeeded in 0.09874399999989691s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,500: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[61c4a82f-e2db-453d-8ae8-3a219ecefef8] received
+hpe_celery_worker  | [2026-05-17 22:30:47,551] INFO apps.orders.tasks inst=celery :: invoice generated for order=361 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:47,551] INFO apps.core inst=celery :: timed[task.send_invoice_email] 433.00ms
+hpe_celery_worker  | [2026-05-17 22:30:47,552: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_invoice_email[7b6f0957-3e43-45a5-a24e-a4f8a670ae5e] succeeded in 0.4341067089999342s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,553: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[8f4a77ce-231f-48d5-84f6-ad1b0fc5425a] received
+hpe_celery_worker  | [2026-05-17 22:30:47,560] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=363
+hpe_celery_worker  | [2026-05-17 22:30:47,560] INFO apps.core inst=celery :: timed[task.send_order_notifications] 59.50ms
+hpe_celery_worker  | [2026-05-17 22:30:47,560: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[61c4a82f-e2db-453d-8ae8-3a219ecefef8] succeeded in 0.06028508300005342s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,562: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[29fe113a-a619-466e-873e-ef42cbc1d14f] received
+hpe_celery_worker  | [2026-05-17 22:30:47,667] INFO apps.orders.tasks inst=celery :: invoice generated for order=363 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:47,667] INFO apps.core inst=celery :: timed[task.send_invoice_email] 235.63ms
+hpe_celery_worker  | [2026-05-17 22:30:47,668: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_invoice_email[cfa8f726-b843-4426-ab06-292ecb6d4fa5] succeeded in 0.23682620899944595s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,670: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[fa3a8b1f-e210-4c76-9a57-0637e97d71c8] received
+hpe_celery_worker  | [2026-05-17 22:30:47,675] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=364
+hpe_celery_worker  | [2026-05-17 22:30:47,675] INFO apps.core inst=celery :: timed[task.send_order_notifications] 113.18ms
+hpe_celery_worker  | [2026-05-17 22:30:47,676: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[29fe113a-a619-466e-873e-ef42cbc1d14f] succeeded in 0.11389041599977645s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,677: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[04fa7518-f68e-4a54-9abc-38a8d32568e6] received
+hpe_celery_worker  | [2026-05-17 22:30:47,856] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=365
+hpe_celery_worker  | [2026-05-17 22:30:47,856] INFO apps.orders.tasks inst=celery :: invoice generated for order=364 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:47,856] INFO apps.core inst=celery :: timed[task.send_order_notifications] 178.12ms
+hpe_celery_worker  | [2026-05-17 22:30:47,856] INFO apps.core inst=celery :: timed[task.send_invoice_email] 302.13ms
+hpe_celery_worker  | [2026-05-17 22:30:47,857: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_invoice_email[8f4a77ce-231f-48d5-84f6-ad1b0fc5425a] succeeded in 0.30338641700018343s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,857: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[04fa7518-f68e-4a54-9abc-38a8d32568e6] succeeded in 0.17940920899945922s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,860: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[20a86ec0-1a0a-4d64-9428-bea0d3c8d3a0] received
+hpe_celery_worker  | [2026-05-17 22:30:47,860: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[665fec0b-a47b-4033-804e-6740324d6c93] received
+hpe_celery_worker  | [2026-05-17 22:30:47,945] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=366
+hpe_celery_worker  | [2026-05-17 22:30:47,945] INFO apps.core inst=celery :: timed[task.send_order_notifications] 84.10ms
+hpe_celery_worker  | [2026-05-17 22:30:47,946: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_order_notifications[665fec0b-a47b-4033-804e-6740324d6c93] succeeded in 0.08507433400063746s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,948: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[8cb7c9d8-3abc-4664-a0a0-448aefabc103] received
+hpe_celery_worker  | [2026-05-17 22:30:47,976] INFO apps.orders.tasks inst=celery :: invoice generated for order=362 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:47,976] INFO apps.core inst=celery :: timed[task.send_invoice_email] 602.53ms
+hpe_celery_worker  | [2026-05-17 22:30:47,976: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_invoice_email[6944b647-233a-4bcb-a48b-071cc95255db] succeeded in 0.6031657509993238s: None
+hpe_celery_worker  | [2026-05-17 22:30:47,978: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[538778ea-d585-4c1a-ba87-e67e6fca6d4d] received
+hpe_celery_worker  | [2026-05-17 22:30:48,065] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=367
+hpe_celery_worker  | [2026-05-17 22:30:48,065] INFO apps.core inst=celery :: timed[task.send_order_notifications] 86.12ms
+hpe_celery_worker  | [2026-05-17 22:30:48,066: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_order_notifications[538778ea-d585-4c1a-ba87-e67e6fca6d4d] succeeded in 0.08655066699975578s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,066: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[08ab0b28-5f53-490d-8a98-033a1f514add] received
+hpe_celery_worker  | [2026-05-17 22:30:48,117] INFO apps.orders.tasks inst=celery :: invoice generated for order=365 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,117] INFO apps.core inst=celery :: timed[task.send_invoice_email] 447.00ms
+hpe_celery_worker  | [2026-05-17 22:30:48,118: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_invoice_email[fa3a8b1f-e210-4c76-9a57-0637e97d71c8] succeeded in 0.4473701669994625s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,118: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[40d32ef5-4c19-40fc-94ec-ba1bfd01606e] received
+hpe_celery_worker  | [2026-05-17 22:30:48,145] INFO apps.orders.tasks inst=celery :: invoice generated for order=366 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,145] INFO apps.core inst=celery :: timed[task.send_invoice_email] 284.60ms
+hpe_celery_worker  | [2026-05-17 22:30:48,145: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_invoice_email[20a86ec0-1a0a-4d64-9428-bea0d3c8d3a0] succeeded in 0.2849749580000207s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,146: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[9b23b10d-0fc0-41a8-9bac-aa88e283d44d] received
+hpe_celery_worker  | [2026-05-17 22:30:48,214] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=368
+hpe_celery_worker  | [2026-05-17 22:30:48,214] INFO apps.core inst=celery :: timed[task.send_order_notifications] 95.25ms
+hpe_celery_worker  | [2026-05-17 22:30:48,215: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_order_notifications[40d32ef5-4c19-40fc-94ec-ba1bfd01606e] succeeded in 0.09641858300074091s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,217: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[cc79d6e2-2544-405a-952d-d00700d73a50] received
+hpe_celery_worker  | [2026-05-17 22:30:48,273] INFO apps.orders.tasks inst=celery :: invoice generated for order=367 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,273] INFO apps.core inst=celery :: timed[task.send_invoice_email] 324.84ms
+hpe_celery_worker  | [2026-05-17 22:30:48,274: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_invoice_email[8cb7c9d8-3abc-4664-a0a0-448aefabc103] succeeded in 0.3259489169995504s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,276: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[33208b0f-7f7c-4879-ba31-52ba53c18e34] received
+hpe_celery_worker  | [2026-05-17 22:30:48,290] INFO apps.orders.tasks inst=celery :: invoice generated for order=368 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,291] INFO apps.core inst=celery :: timed[task.send_invoice_email] 224.11ms
+hpe_celery_worker  | [2026-05-17 22:30:48,292: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_invoice_email[08ab0b28-5f53-490d-8a98-033a1f514add] succeeded in 0.22517729199989844s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,294: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[f7a8f046-91b7-4212-a7a8-1856cfb754b1] received
+hpe_celery_worker  | [2026-05-17 22:30:48,342] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=369
+hpe_celery_worker  | [2026-05-17 22:30:48,342] INFO apps.core inst=celery :: timed[task.send_order_notifications] 124.30ms
+hpe_celery_worker  | [2026-05-17 22:30:48,343: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_order_notifications[cc79d6e2-2544-405a-952d-d00700d73a50] succeeded in 0.12540112499937095s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,345: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[0d95793e-ad5a-46ab-8a1a-390c60625eaf] received
+hpe_celery_worker  | [2026-05-17 22:30:48,457] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=370
+hpe_celery_worker  | [2026-05-17 22:30:48,457] INFO apps.core inst=celery :: timed[task.send_order_notifications] 163.10ms
+hpe_celery_worker  | [2026-05-17 22:30:48,458: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_order_notifications[f7a8f046-91b7-4212-a7a8-1856cfb754b1] succeeded in 0.16418937500020547s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,459] INFO apps.orders.tasks inst=celery :: invoice generated for order=369 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,459] INFO apps.core inst=celery :: timed[task.send_invoice_email] 313.21ms
+hpe_celery_worker  | [2026-05-17 22:30:48,460: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_invoice_email[9b23b10d-0fc0-41a8-9bac-aa88e283d44d] succeeded in 0.31389362499976414s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,460: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[7b19666f-6795-4277-bcdb-a683057f344a] received
+hpe_celery_worker  | [2026-05-17 22:30:48,461: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[db51e3d7-4f1c-4551-b981-90eef2cb5e09] received
+hpe_celery_worker  | [2026-05-17 22:30:48,587] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=371
+hpe_celery_worker  | [2026-05-17 22:30:48,587] INFO apps.core inst=celery :: timed[task.send_order_notifications] 126.66ms
+hpe_celery_worker  | [2026-05-17 22:30:48,588: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[7b19666f-6795-4277-bcdb-a683057f344a] succeeded in 0.12775150000015856s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,590: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[d30d0629-175b-4e12-92f1-63b24ed9728d] received
+hpe_celery_worker  | [2026-05-17 22:30:48,675] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=372
+hpe_celery_worker  | [2026-05-17 22:30:48,675] INFO apps.core inst=celery :: timed[task.send_order_notifications] 84.30ms
+hpe_celery_worker  | [2026-05-17 22:30:48,676: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[d30d0629-175b-4e12-92f1-63b24ed9728d] succeeded in 0.08553408399984619s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,678: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[8b7240eb-c41f-4194-93c8-54b69edbdd5d] received
+hpe_celery_worker  | [2026-05-17 22:30:48,700] INFO apps.orders.tasks inst=celery :: invoice generated for order=371 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,700] INFO apps.core inst=celery :: timed[task.send_invoice_email] 354.39ms
+hpe_celery_worker  | [2026-05-17 22:30:48,701: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_invoice_email[0d95793e-ad5a-46ab-8a1a-390c60625eaf] succeeded in 0.355696333999731s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,702: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[7697d897-42b0-4440-a686-dc02ece161bf] received
+hpe_celery_worker  | [2026-05-17 22:30:48,782] INFO apps.orders.tasks inst=celery :: invoice generated for order=372 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,782] INFO apps.core inst=celery :: timed[task.send_invoice_email] 320.11ms
+hpe_celery_worker  | [2026-05-17 22:30:48,783: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_invoice_email[db51e3d7-4f1c-4551-b981-90eef2cb5e09] succeeded in 0.3213752090005073s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,785: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[4c03498e-b3b0-4b58-80b7-5499cf4d43c1] received
+hpe_celery_worker  | [2026-05-17 22:30:48,855] INFO apps.orders.tasks inst=celery :: invoice generated for order=370 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,855] INFO apps.core inst=celery :: timed[task.send_invoice_email] 577.93ms
+hpe_celery_worker  | [2026-05-17 22:30:48,856: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_invoice_email[33208b0f-7f7c-4879-ba31-52ba53c18e34] succeeded in 0.5790906669999458s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,858: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[a0810d90-d42e-411a-8283-c3c146d5f28e] received
+hpe_celery_worker  | [2026-05-17 22:30:48,868] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=373
+hpe_celery_worker  | [2026-05-17 22:30:48,868] INFO apps.core inst=celery :: timed[task.send_order_notifications] 165.32ms
+hpe_celery_worker  | [2026-05-17 22:30:48,869: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_order_notifications[7697d897-42b0-4440-a686-dc02ece161bf] succeeded in 0.16639000000031956s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,871: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[0da0e21b-b023-4e49-a5fe-15ed03e5a9ae] received
+hpe_celery_worker  | [2026-05-17 22:30:48,893] INFO apps.orders.tasks inst=celery :: invoice generated for order=373 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:48,893] INFO apps.core inst=celery :: timed[task.send_invoice_email] 214.78ms
+hpe_celery_worker  | [2026-05-17 22:30:48,894: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_invoice_email[8b7240eb-c41f-4194-93c8-54b69edbdd5d] succeeded in 0.21585487500033196s: None
+hpe_celery_worker  | [2026-05-17 22:30:48,896: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[29864968-55f1-4337-931c-470c47bc05ef] received
+hpe_celery_worker  | [2026-05-17 22:30:49,012] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=375
+hpe_celery_worker  | [2026-05-17 22:30:49,012] INFO apps.core inst=celery :: timed[task.send_order_notifications] 115.92ms
+hpe_celery_worker  | [2026-05-17 22:30:49,013: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_order_notifications[29864968-55f1-4337-931c-470c47bc05ef] succeeded in 0.11691420799979824s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,015: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[6205a0f3-9dd7-4c6c-90bc-c7b499efdfdb] received
+hpe_celery_worker  | [2026-05-17 22:30:49,046] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=374
+hpe_celery_worker  | [2026-05-17 22:30:49,046] INFO apps.core inst=celery :: timed[task.send_order_notifications] 187.09ms
+hpe_celery_worker  | [2026-05-17 22:30:49,047: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_order_notifications[a0810d90-d42e-411a-8283-c3c146d5f28e] succeeded in 0.188208417000169s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,049: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[4deb3c7f-273d-4167-be30-90db899a5835] received
+hpe_celery_worker  | [2026-05-17 22:30:49,212] INFO apps.orders.tasks inst=celery :: invoice generated for order=375 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:49,213] INFO apps.core inst=celery :: timed[task.send_invoice_email] 340.73ms
+hpe_celery_worker  | [2026-05-17 22:30:49,214: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_invoice_email[0da0e21b-b023-4e49-a5fe-15ed03e5a9ae] succeeded in 0.341803166000318s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,215: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[385fe8fd-8cc4-4aaa-a98a-5ed5f274b301] received
+hpe_celery_worker  | [2026-05-17 22:30:49,250] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=376
+hpe_celery_worker  | [2026-05-17 22:30:49,250] INFO apps.core inst=celery :: timed[task.send_order_notifications] 200.45ms
+hpe_celery_worker  | [2026-05-17 22:30:49,251: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_order_notifications[4deb3c7f-273d-4167-be30-90db899a5835] succeeded in 0.2015746669994769s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,253: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[14e550aa-ab7b-4134-927a-99567135cf2c] received
+hpe_celery_worker  | [2026-05-17 22:30:49,274] INFO apps.orders.tasks inst=celery :: invoice generated for order=376 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:49,274] INFO apps.core inst=celery :: timed[task.send_invoice_email] 258.18ms
+hpe_celery_worker  | [2026-05-17 22:30:49,275: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_invoice_email[6205a0f3-9dd7-4c6c-90bc-c7b499efdfdb] succeeded in 0.25923941699966235s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,276: INFO/MainProcess] Task apps.orders.tasks.send_invoice_email[ec8a8c0b-af0e-48fc-9cd9-43c12eed23e4] received
+hpe_celery_worker  | [2026-05-17 22:30:49,365] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=377
+hpe_celery_worker  | [2026-05-17 22:30:49,365] INFO apps.core inst=celery :: timed[task.send_order_notifications] 111.77ms
+hpe_celery_worker  | [2026-05-17 22:30:49,366: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_order_notifications[14e550aa-ab7b-4134-927a-99567135cf2c] succeeded in 0.11286966700026824s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,368: INFO/MainProcess] Task apps.orders.tasks.send_order_notifications[7a044540-401d-457b-840a-8c15dc80b922] received
+hpe_celery_worker  | [2026-05-17 22:30:49,385] INFO apps.orders.tasks inst=celery :: invoice generated for order=374 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:49,385] INFO apps.core inst=celery :: timed[task.send_invoice_email] 600.17ms
+hpe_celery_worker  | [2026-05-17 22:30:49,386: INFO/ForkPoolWorker-3] Task apps.orders.tasks.send_invoice_email[4c03498e-b3b0-4b58-80b7-5499cf4d43c1] succeeded in 0.6012772080002833s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,502] INFO apps.orders.tasks inst=celery :: notifications dispatched for order=378
+hpe_celery_worker  | [2026-05-17 22:30:49,502] INFO apps.orders.tasks inst=celery :: invoice generated for order=378 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:49,502] INFO apps.core inst=celery :: timed[task.send_order_notifications] 133.93ms
+hpe_celery_worker  | [2026-05-17 22:30:49,502] INFO apps.core inst=celery :: timed[task.send_invoice_email] 225.22ms
+hpe_celery_worker  | [2026-05-17 22:30:49,503: INFO/ForkPoolWorker-4] Task apps.orders.tasks.send_invoice_email[ec8a8c0b-af0e-48fc-9cd9-43c12eed23e4] succeeded in 0.22641062499951659s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,503: INFO/ForkPoolWorker-2] Task apps.orders.tasks.send_order_notifications[7a044540-401d-457b-840a-8c15dc80b922] succeeded in 0.1352353749998656s: None
+hpe_celery_worker  | [2026-05-17 22:30:49,728] INFO apps.orders.tasks inst=celery :: invoice generated for order=377 user=1 total=10.00
+hpe_celery_worker  | [2026-05-17 22:30:49,728] INFO apps.core inst=celery :: timed[task.send_invoice_email] 512.25ms
+hpe_celery_worker  | [2026-05-17 22:30:49,729: INFO/ForkPoolWorker-1] Task apps.orders.tasks.send_invoice_email[385fe8fd-8cc4-4aaa-a98a-5ed5f274b301] succeeded in 0.5134756260003996s: None
