@@ -1,0 +1,134 @@
+# Compose stack for Req #5 (Load Distribution).
+# Three identical Django app servers (web1/web2/web3) sit behind Nginx with
+# least_conn upstream balancing. Postgres is the shared source of truth.
+# Redis is the Celery broker for Req #3/#4 (async + batch).
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: hpe_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ecommerce}
+      POSTGRES_USER: ${POSTGRES_USER:-ecommerce}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ecommerce}
+    ports:
+      - "5433:5432"   # host 5433 -> container 5432 (avoids clash with any local Postgres)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ecommerce}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: hpe_redis
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  # Dedicated short-lived container that runs migrations once before the
+  # web pool starts. Avoids three workers racing to apply the same migration.
+  migrator:
+    build: .
+    image: hpe_app:latest
+    container_name: hpe_migrator
+    env_file: .env
+    environment:
+      ROLE: migrator
+    command: ["sh", "-c",
+              "python manage.py makemigrations accounts catalog cart orders core --noinput && python manage.py migrate --noinput"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: "no"
+
+  web1: &web
+    build: .
+    image: hpe_app:latest
+    container_name: hpe_web1
+    env_file: .env
+    environment:
+      INSTANCE_NAME: web1
+    # 3 workers x 4 threads per process; Req #2 capacity control.
+    # --max-requests recycles workers to release any leaked memory under load.
+    command: ["gunicorn", "config.wsgi:application",
+              "--bind", "0.0.0.0:8000",
+              "--workers", "3",
+              "--threads", "4",
+              "--worker-class", "gthread",
+              "--max-requests", "1000",
+              "--max-requests-jitter", "100",
+              "--timeout", "60",
+              "--access-logfile", "-"]
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+    expose:
+      - "8000"
+
+  web2:
+    <<: *web
+    container_name: hpe_web2
+    environment:
+      INSTANCE_NAME: web2
+
+  web3:
+    <<: *web
+    container_name: hpe_web3
+    environment:
+      INSTANCE_NAME: web3
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: hpe_nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - web1
+      - web2
+      - web3
+
+  # Celery workers — Req #3 async queues. Concurrency capped (Req #2).
+  celery_worker:
+    build: .
+    image: hpe_app:latest
+    container_name: hpe_celery_worker
+    env_file: .env
+    environment:
+      INSTANCE_NAME: celery
+    command: ["celery", "-A", "config", "worker",
+              "--loglevel=INFO",
+              "--concurrency=4",
+              "--max-tasks-per-child=500"]
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+
+  # Celery Beat — Req #4 scheduled batch job.
+  celery_beat:
+    build: .
+    image: hpe_app:latest
+    container_name: hpe_celery_beat
+    env_file: .env
+    environment:
+      INSTANCE_NAME: beat
+    command: ["celery", "-A", "config", "beat",
+              "--loglevel=INFO",
+              "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler"]
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:
+  redis_data:
