@@ -25,10 +25,7 @@ def view_cart(request):
 def add_item(request):
     s = AddToCartSerializer(data=request.data)
     s.is_valid(raise_exception=True)
-    # The cart itself is per-user, so concurrent writes to the *same* cart
-    # from one user are rare. We still wrap in a transaction so the
-    # get-or-create + update is atomic, avoiding a duplicate-row UNIQUE
-    # violation if the same user double-clicks.
+    
     with transaction.atomic():
         cart = _get_or_create_cart(request.user)
         item, created = CartItem.objects.get_or_create(
