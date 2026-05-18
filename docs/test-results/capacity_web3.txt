@@ -1,0 +1,231 @@
+hpe_web3  | [entrypoint] waiting for Postgres at postgres:5432 ...
+hpe_web3  | [entrypoint] Postgres reachable.
+hpe_web3  | [2026-05-18 16:04:26 +0000] [1] [INFO] Starting gunicorn 22.0.0
+hpe_web3  | [2026-05-18 16:04:26 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+hpe_web3  | [2026-05-18 16:04:26 +0000] [1] [INFO] Using worker: gthread
+hpe_web3  | [2026-05-18 16:04:26 +0000] [8] [INFO] Booting worker with pid: 8
+hpe_web3  | [2026-05-18 16:04:26 +0000] [9] [INFO] Booting worker with pid: 9
+hpe_web3  | [2026-05-18 16:04:26 +0000] [10] [INFO] Booting worker with pid: 10
+hpe_web3  | [2026-05-18 16:04:26,885] INFO apps.core inst=web3 :: CapacityControl: per-process semaphore cap=1
+hpe_web3  | [2026-05-18 16:04:26,903] INFO apps.core inst=web3 :: CapacityControl: per-process semaphore cap=1
+hpe_web3  | [2026-05-18 16:04:26,941] INFO apps.core inst=web3 :: CapacityControl: per-process semaphore cap=1
+hpe_web3  | [2026-05-18 16:07:13,793] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,800] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,801] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,807] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,835] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,835] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,852] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,852] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,859] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,859] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,859] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,860] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,863] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,870] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,869] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,870] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,872] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,872] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,873] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,876] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,894] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,895] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,911] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,911] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,914] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,917] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,917] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,919] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,921] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,922] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:13,926] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,926] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,926] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,927] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,927] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,926] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,927] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:13,927] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,020] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 239.8ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,032] WARNING apps.core inst=web3 :: slow request POST /api/orders/checkout-direct/ 282.6ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,081] WARNING apps.core inst=web3 :: slow request POST /api/orders/checkout-direct/ 337.2ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,089] INFO apps.core inst=web3 :: GET /api/catalog/products/3/ 5.1ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "GET /api/catalog/products/3/ HTTP/1.1" 200 117 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,103] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,103] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,105] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,105] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,107] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,108] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,112] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,112] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,116] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,116] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,117] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,117] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,117] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,117] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,117] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,117] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,119] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,119] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,124] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,124] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,126] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 23.7ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,132] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,132] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,133] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,133] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,138] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 22.2ms
+hpe_web3  | [2026-05-18 16:07:14,139] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,139] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,140] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,141] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,141] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,141] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,144] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,144] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,149] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,149] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,157] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 44.0ms
+hpe_web3  | [2026-05-18 16:07:14,157] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,158] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,163] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,163] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,163] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,163] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,165] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,165] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,165] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,166] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,167] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,167] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,168] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,168] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,170] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,171] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,172] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,172] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,173] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,173] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,174] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,174] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,174] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,175] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,175] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,175] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,176] WARNING apps.core inst=web3 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web3  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | [2026-05-18 16:07:14,176] ERROR django.request inst=web3 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,179] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 40.8ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,181] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 30.5ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web3  | [2026-05-18 16:07:14,187] INFO apps.core inst=web3 :: POST /api/orders/checkout-direct/ 18.9ms
+hpe_web3  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"

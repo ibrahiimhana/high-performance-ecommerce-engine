@@ -1,0 +1,271 @@
+hpe_web2  | [entrypoint] waiting for Postgres at postgres:5432 ...
+hpe_web2  | [entrypoint] Postgres reachable.
+hpe_web2  | [2026-05-18 16:04:26 +0000] [1] [INFO] Starting gunicorn 22.0.0
+hpe_web2  | [2026-05-18 16:04:26 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+hpe_web2  | [2026-05-18 16:04:26 +0000] [1] [INFO] Using worker: gthread
+hpe_web2  | [2026-05-18 16:04:26 +0000] [7] [INFO] Booting worker with pid: 7
+hpe_web2  | [2026-05-18 16:04:26 +0000] [8] [INFO] Booting worker with pid: 8
+hpe_web2  | [2026-05-18 16:04:26 +0000] [9] [INFO] Booting worker with pid: 9
+hpe_web2  | [2026-05-18 16:04:26,870] INFO apps.core inst=web2 :: CapacityControl: per-process semaphore cap=1
+hpe_web2  | [2026-05-18 16:04:27,098] INFO apps.core inst=web2 :: CapacityControl: per-process semaphore cap=1
+hpe_web2  | [2026-05-18 16:04:27,113] INFO apps.core inst=web2 :: CapacityControl: per-process semaphore cap=1
+hpe_web2  | [2026-05-18 16:07:13,765] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,765] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,776] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,777] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,790] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,790] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,790] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,790] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,799] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,801] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,801] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,801] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,802] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,807] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,801] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,808] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,810] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,812] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,835] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,835] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,844] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,844] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,855] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,855] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,857] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,857] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,859] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,859] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,859] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,859] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,861] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,861] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,862] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,863] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,863] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,863] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,863] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,863] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,869] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,869] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,881] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,881] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,886] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,886] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,890] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,890] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,904] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,904] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,909] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,909] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,910] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,910] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,910] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,911] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,911] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,912] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,915] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,915] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,916] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,916] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,917] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,917] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,919] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,919] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,922] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,922] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,922] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,922] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,924] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,924] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,924] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,924] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:13,924] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:13,929] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:13 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,012] WARNING apps.core inst=web2 :: slow request POST /api/orders/checkout-direct/ 262.5ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,014] WARNING apps.core inst=web2 :: slow request POST /api/orders/checkout-direct/ 278.4ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,019] WARNING apps.core inst=web2 :: slow request POST /api/orders/checkout-direct/ 275.6ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,097] INFO apps.core inst=web2 :: PATCH /api/catalog/products/3/ 5.9ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "PATCH /api/catalog/products/3/ HTTP/1.1" 200 117 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,104] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,104] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,115] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,115] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,115] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,115] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,116] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,116] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,117] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,117] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,128] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,128] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,136] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,137] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,139] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,139] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,141] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,141] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,141] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,141] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,142] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,142] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,143] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,143] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,146] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 42.6ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,147] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 44.5ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,152] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,152] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,152] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,152] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,153] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 39.9ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,165] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 15.2ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,169] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,169] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,169] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,170] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,171] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,171] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,172] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,172] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,173] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,173] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,174] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,174] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,176] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,176] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,177] WARNING apps.core inst=web2 :: CapacityControl: shed load on /api/orders/checkout-direct/
+hpe_web2  | Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | [2026-05-18 16:07:14,177] ERROR django.request inst=web2 :: Service Unavailable: /api/orders/checkout-direct/
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 503 47 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,182] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 25.6ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,184] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 29.7ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,189] INFO apps.core inst=web2 :: POST /api/orders/checkout-direct/ 22.1ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "POST /api/orders/checkout-direct/ HTTP/1.1" 201 152 "-" "python-requests/2.32.5"
+hpe_web2  | [2026-05-18 16:07:14,198] INFO apps.core inst=web2 :: GET /api/catalog/products/3/ 4.9ms
+hpe_web2  | 172.18.0.9 - - [18/May/2026:16:07:14 +0000] "GET /api/catalog/products/3/ HTTP/1.1" 200 117 "-" "python-requests/2.32.5"
