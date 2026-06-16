@@ -1,24 +1,110 @@
-from rest_framework import generics, permissions
+from django.core.cache import cache
+from django.db import transaction
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 from .models import Product
 from .serializers import ProductSerializer
+from .cache_services import get_product_from_cache
 
 
-class ProductList(generics.ListCreateAPIView):
-    queryset = Product.objects.all().order_by("id")
-    serializer_class = ProductSerializer
-    # Read-open, write-admin (Req-1 mutation paths go through orders).
-    def get_permissions(self):
-        if self.request.method == "GET":
-            return [permissions.AllowAny()]
-        return [permissions.IsAdminUser()]
+class ProductList(APIView):
+
+    def get(self, request):
+
+        products = Product.objects.all()
+
+        serializer = ProductSerializer(
+            products,
+            many=True
+        )
+
+        return Response(serializer.data)
 
 
-class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+class ProductDetail(APIView):
 
-    def get_permissions(self):
-        if self.request.method == "GET":
-            return [permissions.AllowAny()]
-        return [permissions.IsAdminUser()]
+    def get(self, request, pk):
+
+        product_data = get_product_from_cache(pk)
+
+        if not product_data:
+            return Response(
+                {"error": "Product not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        try:
+            product = Product.objects.get(id=pk)
+
+            product.views_count += 1
+
+            product.save(update_fields=["views_count"])
+
+        except Product.DoesNotExist:
+            pass
+
+        return Response(product_data)
+
+    @transaction.atomic
+    def put(self, request, pk):
+
+        try:
+
+            product = Product.objects.select_for_update().get(id=pk)
+
+            serializer = ProductSerializer(
+                product,
+                data=request.data,
+                partial=True
+            )
+
+            serializer.is_valid(raise_exception=True)
+
+            updated_product = serializer.save()
+
+            updated_product.version += 1
+
+            updated_product.save(update_fields=["version"])
+
+            return Response(
+                ProductSerializer(updated_product).data
+            )
+
+        except Product.DoesNotExist:
+
+            return Response(
+                {"error": "Product not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class TopProductsView(APIView):
+
+    def get(self, request):
+
+        cache_key = "top_products"
+
+        cached_products = cache.get(cache_key)
+
+        if cached_products:
+            return Response(cached_products)
+
+        products = Product.objects.order_by(
+            "-views_count"
+        )[:20]
+
+        serialized = ProductSerializer(
+            products,
+            many=True
+        ).data
+
+        cache.set(
+            cache_key,
+            serialized,
+            timeout=600
+        )
+
+        return Response(serialized)

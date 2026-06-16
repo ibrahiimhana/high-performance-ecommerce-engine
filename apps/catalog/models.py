@@ -16,6 +16,7 @@ class Product(models.Model):
     # invalidate the per-product cache (Req #6 prep) and reserved for
     # optimistic-lock retries in Req #7.
     version = models.PositiveBigIntegerField(default=0)
+    views_count = models.PositiveIntegerField(default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
