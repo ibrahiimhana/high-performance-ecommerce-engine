@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import DailySalesReport, Order, OrderItem
+from .models import DailySalesReport, Order, OrderItem, Payment
 
 
 class OrderItemInline(admin.TabularInline):
@@ -13,6 +13,12 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "status", "total", "created_at")
     list_filter = ("status",)
     inlines = [OrderItemInline]
+
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ("id", "order", "status", "amount", "provider_ref", "created_at")
+    list_filter = ("status",)
 
 
 @admin.register(DailySalesReport)

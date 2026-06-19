@@ -65,8 +65,9 @@ Creates a demo superuser `demo / demo12345` and four products including
 | GET    | `/api/cart/`                          | View cart                                          |
 | POST   | `/api/cart/add/`                      | Add item                                           |
 | DELETE | `/api/cart/items/<id>/`               | Remove item                                        |
-| POST   | `/api/orders/checkout/`               | **Req #1** safe checkout (locks + ACID)            |
-| POST   | `/api/orders/checkout-direct/`        | Direct buy; takes `unsafe: bool` for the demo      |
+| POST   | `/api/orders/checkout/`               | **Req #1 + #8** cart checkout (pessimistic lock + atomic payment) |
+| POST   | `/api/orders/checkout-direct/`        | Direct buy. Body: `{items, unsafe, lock, force_payment_outcome}` |
+| POST   | `/api/orders/checkout-optimistic/`    | **Req #7** alias — same as checkout-direct with `lock=optimistic` |
 | GET    | `/api/orders/mine/`                   | My orders                                          |
 | POST   | `/api/orders/reports/trigger/`        | **Req #4** kick the batch job on demand            |
 | GET    | `/api/orders/reports/daily/`          | **Req #4** output: daily rollups                   |
@@ -105,6 +106,30 @@ curl.exe http://localhost:8080/api/orders/reports/daily/
 ```
 
 `celery_beat` will fire the same job automatically at 00:05 UTC every day.
+
+## Demonstrate Req #7 — optimistic concurrency control
+
+```powershell
+docker compose exec -T -e BASE_URL=http://nginx web1 python scripts/optimistic_lock_demo.py
+```
+
+Same shape as the Req #1 demo, different lock strategy. Expect **50
+successful sales** out of 100 attempts on a 50-unit product, with the
+remainder split between "Out of stock" and "Concurrent update" 409s.
+`version_after >= success` proves the conditional UPDATE actually did
+the work.
+
+## Demonstrate Req #8 — ACID transaction integrity
+
+```powershell
+docker compose exec -T -e BASE_URL=http://nginx web1 python scripts/acid_demo.py
+```
+
+Three-phase test: 30 declined payments, 30 gateway-error payments, 30
+approved payments. Expect every Phase A/B request to roll back with no
+side effect (stock + orders unchanged), and Phase C to advance both by
+exactly 30. The script `assert`s the deltas; non-zero exit code means
+ACID failed.
 
 ## Demonstrate Req #5 — load distribution
 

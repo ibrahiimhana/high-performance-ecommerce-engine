@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import DailySalesReport, Order, OrderItem
+from .models import DailySalesReport, Order, OrderItem, Payment
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -9,12 +9,19 @@ class OrderItemSerializer(serializers.ModelSerializer):
         fields = ("id", "product", "quantity", "unit_price")
 
 
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = ("id", "status", "amount", "provider_ref", "failure_reason", "created_at")
+
+
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
+    payment = PaymentSerializer(read_only=True)
 
     class Meta:
         model = Order
-        fields = ("id", "status", "total", "created_at", "items")
+        fields = ("id", "status", "total", "created_at", "items", "payment")
 
 
 class CheckoutLine(serializers.Serializer):
@@ -23,16 +30,22 @@ class CheckoutLine(serializers.Serializer):
 
 
 class CheckoutInputSerializer(serializers.Serializer):
-    """Direct-checkout input. Used by the race-condition demo so we don't
-    have to populate the cart per request. The cart-driven checkout endpoint
-    re-uses the same service function."""
+    """
+    Direct-checkout input. The three optional fields are demo levers:
 
+      unsafe:                 Req #1 — bypass locking entirely.
+      lock:                   Req #7 — choose pessimistic or optimistic.
+      force_payment_outcome:  Req #8 — force a specific gateway outcome.
+    """
     items = CheckoutLine(many=True)
-
-    # Toggle that lets us flip the demo between SAFE (locked) and UNSAFE
-    # (no-lock) so the rubric's "prove you handled the race condition"
-    # requirement is demonstrable with a single flag.
     unsafe = serializers.BooleanField(default=False)
+    lock = serializers.ChoiceField(
+        choices=["pessimistic", "optimistic"], default="pessimistic"
+    )
+    force_payment_outcome = serializers.ChoiceField(
+        choices=["approved", "declined", "error"],
+        required=False, allow_null=True, default=None,
+    )
 
 
 class DailySalesReportSerializer(serializers.ModelSerializer):
