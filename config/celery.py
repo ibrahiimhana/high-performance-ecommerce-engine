@@ -1,15 +1,4 @@
-"""
-Celery entry point.
-
-Req #3 (Asynchronous Queues):
-    Heavy or user-non-blocking work — invoice rendering, notification
-    fan-out — is dispatched to a queue here so the checkout HTTP call
-    returns to the client immediately after stock is reserved.
-
-Req #4 (Batch Processing):
-    Beat schedule below kicks off the daily sales rollup, which itself
-    streams through orders in chunks (see apps.orders.tasks).
-"""
+"""Celery entry point + beat schedule."""
 import os
 
 from celery import Celery
@@ -22,15 +11,14 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    # Req #4 — runs every day at 00:05 UTC, processes prior day in chunks.
+    # 00:05 UTC daily — process the previous day's orders into a summary row.
     "daily-sales-rollup": {
         "task": "apps.orders.tasks.rollup_daily_sales",
         "schedule": crontab(hour=0, minute=5),
     },
-    # Req #10 — flush per-product view counters (Redis -> Postgres) every
-    # minute so the hot read path can avoid a synchronous DB write.
+    # Flush per-product view counters from Redis to Postgres every minute.
     "flush-view-counters": {
         "task": "apps.catalog.tasks.flush_view_counters",
-        "schedule": 60.0,  # seconds
+        "schedule": 60.0,
     },
 }

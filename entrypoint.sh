@@ -1,6 +1,5 @@
 #!/bin/sh
-# Container entrypoint. Waits for Postgres (if configured), then execs
-# whatever command was passed (gunicorn, celery, migrate, ...).
+# Wait for Postgres, then exec the passed command.
 set -e
 
 if [ -n "$POSTGRES_HOST" ]; then

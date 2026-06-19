@@ -7,14 +7,11 @@ class Product(models.Model):
     description = models.TextField(blank=True, default="")
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
-    # `stock` is the contended shared resource (Req #1). Every write to this
-    # field goes through services.reserve_stock(), which holds a Postgres row
-    # lock for the duration of the critical section.
+    # Contended field — all writes go through services.checkout under
+    # SELECT FOR UPDATE.
     stock = models.PositiveIntegerField(default=0)
 
-    # Monotonic counter, incremented on every stock mutation. Used today to
-    # invalidate the per-product cache (Req #6 prep) and reserved for
-    # optimistic-lock retries in Req #7.
+    # Bumped on every stock mutation; used by the optimistic-lock CAS.
     version = models.PositiveBigIntegerField(default=0)
     views_count = models.PositiveIntegerField(default=0)
 

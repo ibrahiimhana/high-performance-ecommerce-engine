@@ -1,14 +1,4 @@
-"""
-AOP-style decorator for instrumenting any callable (view, service, task).
-
-This is the second piece of evidence for the "AOP for performance monitoring"
-point in the rubric. The middleware handles HTTP join points; this handles
-service-layer / Celery-task join points.
-
-Usage:
-    @timed("checkout.atomic_section")
-    def perform_checkout(...): ...
-"""
+"""@timed decorator: wraps any callable to log its wall time."""
 from __future__ import annotations
 
 import functools

@@ -1,18 +1,7 @@
 """
-Latency benchmark — supports Req #10 (Benchmarking & Bottleneck Analysis).
+Latency benchmark for one endpoint.
 
-Drives a single endpoint with a configurable number of total requests at a
-configurable concurrency level, then prints percentile latencies and
-throughput. Outputs in a markdown-friendly table so the result can be
-pasted straight into BENCHMARK_REPORT.md.
-
-Usage from inside a web container:
-
-    python scripts/benchmark.py \
-        --url http://nginx/api/catalog/products/1/ \
-        --requests 1000 \
-        --concurrency 30 \
-        --label "baseline"
+    python scripts/benchmark.py --url <url> --requests N --concurrency C [--label X]
 """
 from __future__ import annotations
 
@@ -51,21 +40,19 @@ def main():
     ap.add_argument("--requests", type=int, default=1000)
     ap.add_argument("--concurrency", type=int, default=30)
     ap.add_argument("--label", default="run")
-    ap.add_argument("--warmup", type=int, default=20,
-                    help="warm-up requests (results discarded)")
+    ap.add_argument("--warmup", type=int, default=20)
     args = ap.parse_args()
 
     session = requests.Session()
 
-    # Warm-up: prime caches, JIT, connection pool — keeps the first 20
-    # requests out of the measurement window.
+    # Discard warmup hits so cache/JIT/conn-pool don't pollute the numbers.
     for _ in range(args.warmup):
         try:
             session.get(args.url, timeout=10)
         except Exception:
             pass
 
-    print(f"Starting benchmark label={args.label!r} url={args.url} "
+    print(f"label={args.label!r} url={args.url} "
           f"requests={args.requests} concurrency={args.concurrency}")
 
     latencies: list[float] = []
@@ -106,7 +93,6 @@ def main():
     print(f"| p99     | {p99:8.2f}     |")
     print(f"| max     | {latencies[-1]:8.2f}     |")
 
-    # Non-zero exit if anything errored
     bad = sum(c for code, c in status_counts.items() if code >= 500 or code == 0)
     sys.exit(1 if bad else 0)
 

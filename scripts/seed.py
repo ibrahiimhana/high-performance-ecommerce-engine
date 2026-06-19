@@ -18,9 +18,8 @@ from apps.catalog.models import Product  # noqa: E402
 
 User = get_user_model()
 
-# Demo user used by the race-condition script. Marked staff so the demo can
-# reset stock via the catalog PATCH endpoint — saves users from having to
-# shell into psql between phases.
+# Made staff so the demo scripts can reset stock via the catalog endpoint
+# instead of opening psql.
 demo_user, created = User.objects.get_or_create(
     username="demo",
     defaults={"email": "demo@example.com", "is_staff": True, "is_superuser": True},
@@ -35,7 +34,6 @@ elif not demo_user.is_staff:
     demo_user.save(update_fields=["is_staff", "is_superuser"])
     print(f"promoted user {demo_user.username} to staff")
 
-# A handful of products.
 seed_products = [
     {"sku": "LAPTOP-001", "name": "Damascus 14\" Laptop",      "price": "999.00", "stock": 100},
     {"sku": "PHONE-001",  "name": "Damascus Phone Pro",        "price": "499.00", "stock": 100},

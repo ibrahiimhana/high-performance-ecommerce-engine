@@ -1,26 +1,11 @@
 """
-Empirical proof for Req #7 (Concurrency Control — optimistic locking).
+Optimistic-locking demo (conditional UPDATE + retry).
 
-Mirrors the shape of scripts/race_condition_demo.py so the comparison is
-easy to read.
+100 concurrent buyers against 50 stock. Expect 50 sales, 50 rejects,
+version bumped exactly 50 times.
 
-What it does:
-    1. Log in as demo.
-    2. Reset RACE-001 to 50 units.
-    3. Fire 100 concurrent single-unit purchases via the OPTIMISTIC
-       checkout path. The view path is
-           POST /api/orders/checkout-direct/
-       with body {"items": [...], "lock": "optimistic"}.
-    4. Report successes (HTTP 201), out-of-stock rejections (HTTP 409
-       with "Out of stock" detail), and optimistic-conflict rejections
-       (HTTP 409 with "Concurrent update" detail).
-
-Pass criteria (the lines the grader will look at):
-    * 50 successful sales (exactly the stock that existed).
-    * stock_after == 0.
-    * consistent == True.
-    * total_attempts > total_successes  -> proves the retry mechanism
-      really kicked in (otherwise we never had any contention to win).
+    docker compose exec -T -e BASE_URL=http://nginx web1 \
+        python scripts/optimistic_lock_demo.py
 """
 from __future__ import annotations
 
@@ -58,7 +43,6 @@ def find_product(token: str) -> dict:
 
 
 def reset_stock(token: str, product_id: int, value: int) -> None:
-    # Req-6 ProductDetail accepts PUT (partial=True) but not PATCH.
     r = requests.put(
         f"{BASE}/api/catalog/products/{product_id}/",
         headers={"Authorization": f"Token {token}"},
@@ -66,7 +50,7 @@ def reset_stock(token: str, product_id: int, value: int) -> None:
         timeout=10,
     )
     if r.status_code not in (200, 202):
-        print(f"[reset_stock] API refused ({r.status_code}): {r.text[:200]}")
+        print(f"[reset_stock] {r.status_code}: {r.text[:200]}")
         sys.exit(2)
 
 
@@ -80,8 +64,7 @@ def one_purchase(token: str, product_id: int) -> tuple[int, str]:
         },
         timeout=30,
     )
-    body = r.text[:160].replace("\n", " ")
-    return r.status_code, body
+    return r.status_code, r.text[:160].replace("\n", " ")
 
 
 def main():
@@ -91,8 +74,7 @@ def main():
     pid = product["id"]
     print(f"-> product {PRODUCT_SKU} id={pid} starting_stock={product['stock']}")
     reset_stock(token, pid, STOCK_TARGET)
-    print(f"-> reset stock to {STOCK_TARGET}, firing {N_REQUESTS} concurrent "
-          f"OPTIMISTIC checkouts on {N_THREADS} threads")
+    print(f"-> firing {N_REQUESTS} optimistic checkouts on {N_THREADS} threads")
 
     success = oos = conflict = other = 0
     with ThreadPoolExecutor(max_workers=N_THREADS) as pool:
@@ -109,35 +91,29 @@ def main():
                 other += 1
                 print(f"  unexpected {code}: {body}")
 
-    # Read final stock
     r = requests.get(f"{BASE}/api/catalog/products/{pid}/",
                      headers={"Authorization": f"Token {token}"})
     stock_after = r.json()["stock"]
     version_after = r.json()["version"]
 
     rows = {
-        "mode": "OPTIMISTIC (conditional UPDATE + retry)",
+        "mode": "OPTIMISTIC (CAS + retry)",
         "requests_fired": N_REQUESTS,
         "successful_sales (HTTP 201)": success,
-        "out_of_stock_rejected (HTTP 409 'Out of stock')": oos,
-        "optimistic_conflicts (HTTP 409 'Concurrent update')": conflict,
+        "out_of_stock (HTTP 409)": oos,
+        "optimistic_conflicts (HTTP 409)": conflict,
         "other_errors": other,
         "stock_before": STOCK_TARGET,
         "stock_after": stock_after,
         "version_after": version_after,
-        "consistent (success + stock_after == STOCK_TARGET)": (success + stock_after == STOCK_TARGET),
-        "saw_real_contention (version bumped more than success count?)": version_after >= success,
+        "consistent": (success + stock_after == STOCK_TARGET),
+        "saw_real_contention": version_after >= success,
     }
     width = max(len(k) for k in rows) + 2
     for k, v in rows.items():
         print(f"  {k:<{width}}{v}")
 
-    print("\nInterpretation:")
-    print("  * Successful sales should equal the original stock (50).")
-    print("  * stock_after should be 0, consistent should be True.")
-    print("  * version_after >= success: every successful sale bumped the")
-    print("    version exactly once, so the conditional UPDATE truly did")
-    print("    the work — not an accident of timing.")
+    print("\nExpected: 50 sales, stock 0, version_after >= 50.")
 
 
 if __name__ == "__main__":

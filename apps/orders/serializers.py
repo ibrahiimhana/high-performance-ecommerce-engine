@@ -30,13 +30,8 @@ class CheckoutLine(serializers.Serializer):
 
 
 class CheckoutInputSerializer(serializers.Serializer):
-    """
-    Direct-checkout input. The three optional fields are demo levers:
-
-      unsafe:                 Req #1 — bypass locking entirely.
-      lock:                   Req #7 — choose pessimistic or optimistic.
-      force_payment_outcome:  Req #8 — force a specific gateway outcome.
-    """
+    """Direct-checkout input. `unsafe`, `lock` and `force_payment_outcome`
+    are demo levers used by the test scripts."""
     items = CheckoutLine(many=True)
     unsafe = serializers.BooleanField(default=False)
     lock = serializers.ChoiceField(

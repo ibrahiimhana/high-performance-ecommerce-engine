@@ -1,13 +1,4 @@
-"""
-Django settings — High-Performance E-Commerce Backend Engine.
-
-Notes for the parallel-programming rubric:
-- DATABASES.CONN_MAX_AGE: persistent DB connections — part of Req #2
-  (avoid per-request TCP+auth handshake under load).
-- CACHES via Redis: shared by all 3 web workers (Req #5 needs shared state).
-- CELERY_*: Req #3 (async queues) and Req #4 (batch).
-- TIME_ZONE in UTC: avoids DST ambiguity in the daily batch rollup (Req #4).
-"""
+"""Django settings."""
 from pathlib import Path
 
 import environ
@@ -54,11 +45,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
 
-    # Req #2 — caps in-flight heavy requests per process.
     "apps.core.middleware.CapacityControlMiddleware",
-    # Adds X-Served-By for Req #5 observability.
     "apps.core.middleware.InstanceTagMiddleware",
-    # AOP-style request timing (architecture doc references this).
     "apps.core.middleware.RequestTimingMiddleware",
 ]
 
@@ -89,15 +77,12 @@ DATABASES = {
         "PASSWORD": env("POSTGRES_PASSWORD"),
         "HOST": env("POSTGRES_HOST"),
         "PORT": env("POSTGRES_PORT"),
-        # Persistent connections — Req #2 (don't burn a TCP handshake per req).
+        # Persistent connections — avoids per-request TCP+auth handshake.
         "CONN_MAX_AGE": 60,
         "CONN_HEALTH_CHECKS": True,
-        "OPTIONS": {
-            # Postgres SERIALIZABLE is unnecessary here — READ COMMITTED is the
-            # Postgres default and is sufficient because the critical sections
-            # in checkout use explicit row locks (SELECT ... FOR UPDATE), see
-            # apps/orders/services.py. See ARCHITECTURE.md §Req-1.
-        },
+        # READ COMMITTED (default) is fine — concurrency is handled
+        # explicitly via row locks in apps/orders/services.py.
+        "OPTIONS": {},
     }
 }
 
@@ -132,16 +117,15 @@ REST_FRAMEWORK = {
     ],
 }
 
-# Celery — Req #3 / Req #4
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
+# acks_late + prefetch=1 = re-deliver on worker crash, no message hoarding.
 CELERY_TASK_ACKS_LATE = True
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 CELERY_TASK_TIME_LIMIT = 60 * 5
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 4
 CELERY_TIMEZONE = "UTC"
 
-# Req #2 — semaphore cap shared by CapacityControlMiddleware.
 MAX_CONCURRENT_HEAVY_REQUESTS = env("MAX_CONCURRENT_HEAVY_REQUESTS")
 
 LOGGING = {

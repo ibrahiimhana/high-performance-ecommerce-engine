@@ -1,7 +1,4 @@
-# Compose stack for Req #5 (Load Distribution).
-# Three identical Django app servers (web1/web2/web3) sit behind Nginx with
-# least_conn upstream balancing. Postgres is the shared source of truth.
-# Redis is the Celery broker for Req #3/#4 (async + batch).
+# 3 Django app servers behind Nginx, Postgres + Redis + Celery worker + beat.
 services:
   postgres:
     image: postgres:16-alpine
@@ -11,7 +8,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-ecommerce}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ecommerce}
     ports:
-      - "5433:5432"   # host 5433 -> container 5432 (avoids clash with any local Postgres)
+      - "5433:5432"   # 5433 on host to avoid clashing with local Postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -32,8 +29,8 @@ services:
       timeout: 3s
       retries: 20
 
-  # Dedicated short-lived container that runs migrations once before the
-  # web pool starts. Avoids three workers racing to apply the same migration.
+  # Runs migrations once before the web pool starts so three workers don't
+  # race to apply the same migration.
   migrator:
     build: .
     image: hpe_app:latest
@@ -57,8 +54,8 @@ services:
     env_file: .env
     environment:
       INSTANCE_NAME: web1
-    # 3 workers x 4 threads per process; Req #2 capacity control.
-    # --max-requests recycles workers to release any leaked memory under load.
+    # 3 workers x 4 threads. --max-requests recycles workers so any leaked
+    # memory doesn't accumulate forever.
     command: ["gunicorn", "config.wsgi:application",
               "--bind", "0.0.0.0:8000",
               "--workers", "3",
@@ -98,7 +95,6 @@ services:
       - web2
       - web3
 
-  # Celery workers — Req #3 async queues. Concurrency capped (Req #2).
   celery_worker:
     build: .
     image: hpe_app:latest
@@ -114,7 +110,6 @@ services:
       migrator:
         condition: service_completed_successfully
 
-  # Celery Beat — Req #4 scheduled batch job.
   celery_beat:
     build: .
     image: hpe_app:latest
@@ -129,9 +124,8 @@ services:
       migrator:
         condition: service_completed_successfully
 
-  # Req #9 — stress test. Behind a profile so `docker compose up -d`
-  # does NOT start it. Invoke explicitly with:
-  #   docker compose --profile loadtest run --rm locust
+  # Behind a profile so `docker compose up -d` does NOT start it.
+  # Run with: docker compose --profile loadtest run --rm locust
   locust:
     image: locustio/locust:2.31.5
     container_name: hpe_locust

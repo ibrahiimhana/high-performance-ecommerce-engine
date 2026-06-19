@@ -27,14 +27,8 @@ class OrderItem(models.Model):
 
 
 class Payment(models.Model):
-    """
-    Req #8 — Transaction Integrity / ACID.
-
-    A Payment row is created inside the same @transaction.atomic block
-    as the Order and the stock decrement, so the rubric's required
-    invariant "payment + stock + order succeed or fail together" is
-    enforced by the database, not by ad-hoc try/except cleanup code.
-    """
+    """Created inside the checkout atomic block — rolls back with the
+    order + stock change if the gateway fails."""
 
     class Status(models.TextChoices):
         PENDING = "PENDING", "Pending"
@@ -49,14 +43,13 @@ class Payment(models.Model):
     status = models.CharField(
         max_length=16, choices=Status.choices, default=Status.PENDING
     )
-    # Provider's transaction id, when the gateway returned one.
     provider_ref = models.CharField(max_length=64, blank=True, default="")
     failure_reason = models.CharField(max_length=200, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
 
 
 class DailySalesReport(models.Model):
-    """Output table for the Req #4 batch job."""
+    """Written by the nightly rollup task."""
     date = models.DateField(unique=True)
     orders_count = models.PositiveIntegerField()
     units_sold = models.PositiveIntegerField()

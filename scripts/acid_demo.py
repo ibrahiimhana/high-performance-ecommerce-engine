@@ -1,41 +1,15 @@
 """
-Empirical proof for Req #8 (Transaction Integrity / ACID).
+ACID rollback demo.
 
-The invariant we are defending:
+Three phases:
+  A — 30 forced declines  -> expect 402, no state change
+  B — 30 forced errors    -> expect 502, no state change
+  C — 30 normal           -> expect 201, stock -30, orders +30
 
-    A checkout that has BEGUN must end in exactly one of two terminal
-    states:
-        (a) stock decremented + Order persisted + APPROVED Payment, or
-        (b) stock unchanged + no Order persisted + no Payment persisted.
+If A or B touch the DB at all, atomicity is broken. asserts make it loud.
 
-Anything in between — stock decremented but no payment, or payment taken
-but no order recorded — is a money-losing, customer-angering bug. The
-@transaction.atomic block plus the payment-step-INSIDE-the-block design
-should make state (b) impossible to observe even under heavy concurrent
-load with deterministic payment failures.
-
-How the script proves it:
-
-    Baseline:
-        product RACE-001 starts at stock = 50.
-        record (stock_before, orders_before, payments_before).
-
-    Phase A — force-decline 30 concurrent checkouts.
-        For each: HTTP 402 expected.
-        Then re-read (stock_after_A, orders_after_A, payments_after_A).
-        EXPECT: same as baseline. Nothing committed.
-
-    Phase B — force-gateway-error 30 concurrent checkouts.
-        For each: HTTP 502 expected.
-        EXPECT: still same as baseline.
-
-    Phase C — let 30 concurrent checkouts proceed normally.
-        For each: HTTP 201 expected.
-        EXPECT: stock down by 30; +30 orders; +30 APPROVED payments.
-
-If Phase A or Phase B alters the database AT ALL, the ACID claim is
-false. If Phase C does not change it by exactly 30/30/30, the locking
-claim is false.
+    docker compose exec -T -e BASE_URL=http://nginx web1 \
+        python scripts/acid_demo.py
 """
 from __future__ import annotations
 
@@ -76,7 +50,6 @@ def find_product(token: str) -> dict:
 
 
 def reset_stock(token: str, pid: int, value: int) -> None:
-    # Req-6 ProductDetail accepts PUT (partial=True) but not PATCH.
     r = requests.put(f"{BASE}/api/catalog/products/{pid}/",
                      headers=headers(token), json={"stock": value})
     if r.status_code not in (200, 202):
@@ -90,8 +63,7 @@ def current_stock(token: str, pid: int) -> int:
 
 
 def my_orders_count(token: str) -> int:
-    # Ask for a generous limit so the demo can see absolute growth, not a
-    # capped tail of the most recent 50.
+    # Need a high limit so growth > 50 is visible.
     r = requests.get(f"{BASE}/api/orders/mine/?limit=5000", headers=headers(token))
     return len(r.json())
 
@@ -138,43 +110,40 @@ def main():
     baseline = snapshot(token, pid)
     print(f"-> baseline {baseline}")
 
-    # ---------- Phase A — declines ----------
-    print(f"\n=== Phase A: {N_PER_PHASE} declined payments ===")
+    print(f"\n=== Phase A: {N_PER_PHASE} declined ===")
     codes_a = burst(token, pid, N_PER_PHASE, "declined")
-    print(f"  HTTP code distribution: {codes_a}   (expected: {{402: {N_PER_PHASE}}})")
+    print(f"  HTTP: {codes_a}   (expected {{402: {N_PER_PHASE}}})")
     after_a = snapshot(token, pid)
     delta_a = diff(baseline, after_a)
-    print(f"  state delta vs baseline: {delta_a}   (expected: stock 0, orders 0)")
-    assert codes_a.get(402, 0) == N_PER_PHASE, "expected every request declined"
-    assert delta_a["stock"] == 0, "ACID violation: stock changed during declined burst!"
-    assert delta_a["orders_for_demo_user"] == 0, "ACID violation: order persisted on decline!"
-    print("  -> Phase A PASS: no side effects from declined payments.")
+    print(f"  delta: {delta_a}   (expected 0/0)")
+    assert codes_a.get(402, 0) == N_PER_PHASE
+    assert delta_a["stock"] == 0, "stock leaked on decline"
+    assert delta_a["orders_for_demo_user"] == 0, "order persisted on decline"
+    print("  PASS")
 
-    # ---------- Phase B — gateway errors ----------
     print(f"\n=== Phase B: {N_PER_PHASE} gateway errors ===")
     codes_b = burst(token, pid, N_PER_PHASE, "error")
-    print(f"  HTTP code distribution: {codes_b}   (expected: {{502: {N_PER_PHASE}}})")
+    print(f"  HTTP: {codes_b}   (expected {{502: {N_PER_PHASE}}})")
     after_b = snapshot(token, pid)
     delta_b = diff(after_a, after_b)
-    print(f"  state delta vs after_A: {delta_b}   (expected: stock 0, orders 0)")
+    print(f"  delta: {delta_b}   (expected 0/0)")
     assert codes_b.get(502, 0) == N_PER_PHASE
-    assert delta_b["stock"] == 0, "ACID violation: stock changed during gateway-error burst!"
+    assert delta_b["stock"] == 0, "stock leaked on gateway error"
     assert delta_b["orders_for_demo_user"] == 0
-    print("  -> Phase B PASS: no side effects from gateway errors.")
+    print("  PASS")
 
-    # ---------- Phase C — happy path ----------
-    print(f"\n=== Phase C: {N_PER_PHASE} approved payments ===")
+    print(f"\n=== Phase C: {N_PER_PHASE} approved ===")
     codes_c = burst(token, pid, N_PER_PHASE, "approved")
-    print(f"  HTTP code distribution: {codes_c}   (expected: {{201: {N_PER_PHASE}}})")
+    print(f"  HTTP: {codes_c}   (expected {{201: {N_PER_PHASE}}})")
     after_c = snapshot(token, pid)
     delta_c = diff(after_b, after_c)
-    print(f"  state delta vs after_B: {delta_c}   (expected: stock -{N_PER_PHASE}, orders +{N_PER_PHASE})")
+    print(f"  delta: {delta_c}   (expected stock -{N_PER_PHASE}, orders +{N_PER_PHASE})")
     assert codes_c.get(201, 0) == N_PER_PHASE
-    assert delta_c["stock"] == -N_PER_PHASE, "expected stock to drop by exactly N"
+    assert delta_c["stock"] == -N_PER_PHASE
     assert delta_c["orders_for_demo_user"] == N_PER_PHASE
-    print("  -> Phase C PASS: stock + orders moved by exactly the right amount.")
+    print("  PASS")
 
-    print("\nALL PHASES PASSED. Req #8 (ACID transaction integrity) demonstrated.")
+    print("\nALL PHASES PASSED — atomic rollback holds.")
 
 
 if __name__ == "__main__":

@@ -1,23 +1,11 @@
 """
-Empirical proof for Req #1 (Concurrent Access & Data Integrity).
+Race-condition demo.
 
-What this script does:
-    1. Logs in as the seeded "demo" user against the load balancer.
-    2. Resets the demo product to a known stock (50 units).
-    3. Fires N concurrent purchase requests for 1 unit each, with
-       `unsafe=True` — the no-lock code path. The classic Race Condition
-       symptom should appear: more successful "sales" than units we had,
-       or negative final stock.
-    4. Resets the same product back to 50 units.
-    5. Repeats the burst with `unsafe=False` — the SELECT FOR UPDATE path.
-       Exactly STOCK sales should succeed, the rest should fail with 409.
+Phase 1: 100 concurrent buyers on the unsafe path -> oversell.
+Phase 2: same on the safe path (SELECT FOR UPDATE) -> exactly STOCK sales.
 
-Run it from the host:
-    pip install requests   # if you don't have it in your venv
-    python scripts/race_condition_demo.py
-
-Or, inside a container with everything already installed:
-    docker compose exec web1 python scripts/race_condition_demo.py
+    docker compose exec -T -e BASE_URL=http://nginx web1 \
+        python scripts/race_condition_demo.py
 """
 from __future__ import annotations
 
@@ -51,38 +39,19 @@ def find_product(token: str) -> dict:
     for p in r.json():
         if p["sku"] == PRODUCT_SKU:
             return p
-    raise RuntimeError("seed first: scripts/seed.py")
+    raise RuntimeError(f"seed first: scripts/seed.py (looking for {PRODUCT_SKU})")
 
 
 def reset_stock(token: str, product_id: int, value: int) -> None:
-    """Reset stock via admin DRF endpoint. The seeded demo user is not staff;
-    we use the Django admin via a superuser instead — or just call the
-    product PATCH endpoint as a staff user.
-
-    Simpler: use the admin we create out-of-band. For this demo we hit the
-    catalog detail endpoint with a staff token. If you don't have a staff
-    token configured, run scripts/seed.py once and set DJANGO_SUPERUSER_*
-    env vars on the migrator container; alternatively shell into the db:
-
-        docker compose exec postgres psql -U ecommerce -d ecommerce \\
-            -c "UPDATE catalog_product SET stock=50, version=version+1 \\
-                WHERE sku='RACE-001';"
-    """
-    # Try the API path; fall back to a clear instruction.
-    # Req-6 ProductDetail accepts PUT (partial=True) but not PATCH.
     r = requests.put(
         f"{BASE}/api/catalog/products/{product_id}/",
         headers={"Authorization": f"Token {token}"},
         json={"stock": value},
         timeout=10,
     )
-    if r.status_code in (200, 202):
-        return
-    print(f"[reset_stock] API refused ({r.status_code}). Run:")
-    print('  docker compose exec postgres psql -U ecommerce -d ecommerce '
-          f'-c "UPDATE catalog_product SET stock={value}, version=version+1 '
-          f"WHERE sku='{PRODUCT_SKU}';\"")
-    sys.exit(2)
+    if r.status_code not in (200, 202):
+        print(f"[reset_stock] {r.status_code}: {r.text[:200]}")
+        sys.exit(2)
 
 
 def one_purchase(token: str, product_id: int, unsafe: bool) -> tuple[int, str]:
@@ -93,21 +62,16 @@ def one_purchase(token: str, product_id: int, unsafe: bool) -> tuple[int, str]:
               "unsafe": unsafe},
         timeout=30,
     )
-    body = r.text[:120].replace("\n", " ")
-    return r.status_code, body
+    return r.status_code, r.text[:120].replace("\n", " ")
 
 
 def burst(token: str, product_id: int, unsafe: bool) -> dict:
-    successes = 0
-    conflicts = 0
-    other = 0
-    served_by_counter: dict[str, int] = {}
-
+    successes = conflicts = other = 0
     with ThreadPoolExecutor(max_workers=N_THREADS) as pool:
         futs = [pool.submit(one_purchase, token, product_id, unsafe)
                 for _ in range(N_REQUESTS)]
         for f in as_completed(futs):
-            code, _body = f.result()
+            code, _ = f.result()
             if code == 201:
                 successes += 1
             elif code == 409:
@@ -115,7 +79,6 @@ def burst(token: str, product_id: int, unsafe: bool) -> dict:
             else:
                 other += 1
 
-    # Read final stock.
     r = requests.get(f"{BASE}/api/catalog/products/{product_id}/",
                      headers={"Authorization": f"Token {token}"})
     stock_after = r.json()["stock"]
@@ -145,19 +108,17 @@ def main():
     pid = product["id"]
     print(f"-> product {PRODUCT_SKU} id={pid} starting_stock={product['stock']}")
 
-    print("\n=== Phase 1: UNSAFE checkout (proving the race exists) ===")
+    print("\n=== Phase 1: UNSAFE ===")
     reset_stock(token, pid, STOCK_TARGET)
     pretty(burst(token, pid, unsafe=True))
 
-    print("\n=== Phase 2: SAFE checkout (with row lock) ===")
+    print("\n=== Phase 2: SAFE ===")
     reset_stock(token, pid, STOCK_TARGET)
     pretty(burst(token, pid, unsafe=False))
 
-    print("\nInterpretation:")
-    print("  * Phase 1 should show successes != 50 OR stock_after != 0")
-    print("    (oversell or inconsistent state -> classic race condition).")
-    print("  * Phase 2 should show exactly 50 successes, 50 conflicts,")
-    print("    stock_after = 0, consistent = True.")
+    print("\nExpected:")
+    print("  Phase 1 -> successes > 50 or stock_after != 0 (race fired)")
+    print("  Phase 2 -> 50 successes, 50 conflicts, stock=0, consistent=True")
 
 
 if __name__ == "__main__":
