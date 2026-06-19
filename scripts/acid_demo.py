@@ -76,8 +76,9 @@ def find_product(token: str) -> dict:
 
 
 def reset_stock(token: str, pid: int, value: int) -> None:
-    r = requests.patch(f"{BASE}/api/catalog/products/{pid}/",
-                       headers=headers(token), json={"stock": value})
+    # Req-6 ProductDetail accepts PUT (partial=True) but not PATCH.
+    r = requests.put(f"{BASE}/api/catalog/products/{pid}/",
+                     headers=headers(token), json={"stock": value})
     if r.status_code not in (200, 202):
         print(f"[reset_stock] {r.status_code}: {r.text[:200]}")
         sys.exit(2)

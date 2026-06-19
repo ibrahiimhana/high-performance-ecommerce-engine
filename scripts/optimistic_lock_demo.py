@@ -58,7 +58,8 @@ def find_product(token: str) -> dict:
 
 
 def reset_stock(token: str, product_id: int, value: int) -> None:
-    r = requests.patch(
+    # Req-6 ProductDetail accepts PUT (partial=True) but not PATCH.
+    r = requests.put(
         f"{BASE}/api/catalog/products/{product_id}/",
         headers={"Authorization": f"Token {token}"},
         json={"stock": value},

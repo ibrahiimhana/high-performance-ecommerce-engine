@@ -69,7 +69,8 @@ def reset_stock(token: str, product_id: int, value: int) -> None:
                 WHERE sku='RACE-001';"
     """
     # Try the API path; fall back to a clear instruction.
-    r = requests.patch(
+    # Req-6 ProductDetail accepts PUT (partial=True) but not PATCH.
+    r = requests.put(
         f"{BASE}/api/catalog/products/{product_id}/",
         headers={"Authorization": f"Token {token}"},
         json={"stock": value},
