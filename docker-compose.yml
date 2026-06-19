@@ -129,6 +129,35 @@ services:
       migrator:
         condition: service_completed_successfully
 
+  # Req #9 — stress test. Behind a profile so `docker compose up -d`
+  # does NOT start it. Invoke explicitly with:
+  #   docker compose --profile loadtest run --rm locust
+  locust:
+    image: locustio/locust:2.31.5
+    container_name: hpe_locust
+    profiles: ["loadtest"]
+    volumes:
+      - ./loadtest:/mnt/locust
+    command:
+      - "-f"
+      - "/mnt/locust/locustfile.py"
+      - "--host"
+      - "http://nginx"
+      - "--users"
+      - "100"
+      - "--spawn-rate"
+      - "10"
+      - "--run-time"
+      - "60s"
+      - "--headless"
+      - "--html"
+      - "/mnt/locust/report.html"
+      - "--csv"
+      - "/mnt/locust/results"
+      - "--csv-full-history"
+    depends_on:
+      - nginx
+
 volumes:
   postgres_data:
   redis_data:

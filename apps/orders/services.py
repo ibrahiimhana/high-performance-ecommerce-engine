@@ -64,6 +64,7 @@ from typing import Iterable
 
 from django.db import transaction
 
+from apps.catalog.cache_services import invalidate_product_cache
 from apps.catalog.models import Product
 from apps.core.aop import timed
 
@@ -144,6 +145,9 @@ def checkout(user, items: Iterable[dict], *, force_payment_outcome: str | None =
         product.stock -= qty
         product.version += 1
         product.save(update_fields=["stock", "version", "updated_at"])
+        # Req #10: drop the cached copy so the next reader doesn't see
+        # stale stock. Cheap (one Redis DEL).
+        invalidate_product_cache(product.id)
 
         line_total = product.price * qty
         total += line_total
@@ -215,6 +219,7 @@ def checkout_optimistic(user, items: Iterable[dict], *, force_payment_outcome: s
             raise ValueError(f"Bad quantity for product {pid}")
 
         product, attempts = _decrement_stock_optimistic(pid, qty)
+        invalidate_product_cache(product.id)  # Req #10
 
         total += product.price * qty
         OrderItem.objects.create(

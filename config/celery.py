@@ -27,4 +27,10 @@ app.conf.beat_schedule = {
         "task": "apps.orders.tasks.rollup_daily_sales",
         "schedule": crontab(hour=0, minute=5),
     },
+    # Req #10 — flush per-product view counters (Redis -> Postgres) every
+    # minute so the hot read path can avoid a synchronous DB write.
+    "flush-view-counters": {
+        "task": "apps.catalog.tasks.flush_view_counters",
+        "schedule": 60.0,  # seconds
+    },
 }

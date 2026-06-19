@@ -101,10 +101,12 @@ DATABASES = {
     }
 }
 
+REDIS_URL = env("REDIS_URL")
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": env("REDIS_URL"),
+        "LOCATION": REDIS_URL,
     }
 }
 
