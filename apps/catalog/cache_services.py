@@ -1,4 +1,3 @@
-"""Product cache + deferred view counter (Redis-backed)."""
 from __future__ import annotations
 
 import logging
@@ -14,8 +13,7 @@ logger = logging.getLogger("apps.catalog.cache")
 
 CACHE_TIMEOUT = 60 * 5
 
-# Direct redis client for INCR — django's cache.incr raises if the key is
-# missing, which would force an extra round-trip per call.
+
 _redis = redis.from_url(settings.REDIS_URL)
 
 
@@ -28,7 +26,6 @@ def _view_counter_key(product_id) -> str:
 
 
 def get_product_from_cache(product_id):
-    """Cache-hit path returns with zero DB queries."""
     key = _product_key(product_id)
     cached = cache.get(key)
     if cached is not None:
@@ -47,7 +44,7 @@ def get_product_from_cache(product_id):
 
 
 def invalidate_product_cache(product_id) -> None:
-    """Called from services.checkout after every stock change."""
+    #Called from services.checkout after every stock change.
     cache.delete(_product_key(product_id))
 
 

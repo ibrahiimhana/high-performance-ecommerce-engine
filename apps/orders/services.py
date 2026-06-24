@@ -46,7 +46,7 @@ def checkout(user, items: Iterable[dict], *, force_payment_outcome: str | None =
         raise ValueError("Empty cart")
 
     # Sort before locking so concurrent checkouts of overlapping items
-    # always acquire locks in the same order -> no AB/BA deadlock.
+    # always acquire locks in the same order 
     items.sort(key=lambda row: row["product_id"])
     product_ids = [row["product_id"] for row in items]
 
@@ -84,8 +84,7 @@ def checkout(user, items: Iterable[dict], *, force_payment_outcome: str | None =
     order.total = total
     order.save(update_fields=["total"])
 
-    # Payment is inside the atomic block on purpose: if charge fails,
-    # everything above rolls back (stock + order + items).
+   
     _charge_or_rollback(order, total, force_payment_outcome)
     return order
 

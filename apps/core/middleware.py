@@ -20,8 +20,7 @@ HEAVY_PATH_PREFIXES = (
 
 
 class CapacityControlMiddleware:
-    """Bounded semaphore per process. Fails fast with 503 when full so the
-    LB can route the retry to a less busy worker."""
+    
 
     _sem: threading.BoundedSemaphore | None = None
     _lock = threading.Lock()
@@ -56,7 +55,7 @@ class CapacityControlMiddleware:
 
 
 class InstanceTagMiddleware:
-    """Stamp X-Instance on every response so we can see which worker served it."""
+    #Stamp X-Instance on every response so we can see which worker served it.
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -68,8 +67,7 @@ class InstanceTagMiddleware:
 
 
 class RequestTimingMiddleware:
-    """AOP-style request timing. Adds X-Response-Time-Ms header and logs
-    a WARN for anything slower than 250ms."""
+    
 
     def __init__(self, get_response):
         self.get_response = get_response

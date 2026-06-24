@@ -27,7 +27,7 @@ def send_invoice_email(self, order_id: int):
         logger.warning("invoice: order %s vanished", order_id)
         return
 
-    # Simulated PDF render + SMTP round-trip.
+    # Simulated PDF render + SMTP 
     import time, random
     time.sleep(random.uniform(0.2, 0.6))
     logger.info("invoice generated for order=%s user=%s total=%s",
